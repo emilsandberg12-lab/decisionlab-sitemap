@@ -1,3 +1,7 @@
+console.log("BEST:", BEST_PAGES);
+console.log("EXP:", EXPERIENCE_PAGES);
+console.log("MAIN:", MAINTENANCE_PAGES);
+
 import express from "express";
 
 // Import data (single source of truth)
