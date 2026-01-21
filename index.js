@@ -1,9 +1,10 @@
 import express from "express";
 
-// Import data
-import { BEST_PAGES } from "./data/best-pages.js";
+// Import data (single source of truth)
+import { CORNERSTONE_PAGES } from "./data/cornerstone-pages.js";
 import { PROBLEMS } from "./data/problems.js";
 import { DECISION_PAGES } from "./data/decision-pages.js";
+import { BEST_PAGES } from "./data/best-pages.js";
 import { EXPERIENCE_PAGES } from "./data/experience-pages.js";
 import { MAINTENANCE_PAGES } from "./data/maintenance-pages.js";
 
@@ -13,9 +14,9 @@ const PORT = Number(process.env.PORT) || 3000;
 const BASE_URL = "https://decisionlab.myshopify.com";
 
 // Helper: byg <url> entries
-function buildUrls(pages) {
+function buildUrls(pages = []) {
   return pages
-    .filter(p => !p.aliasOf) // undgå duplicate/alias sider
+    .filter(p => p && p.slug && !p.aliasOf) // undgå aliases & invalide entries
     .map(
       p => `
   <url>
@@ -25,13 +26,14 @@ function buildUrls(pages) {
     .join("");
 }
 
-// Shopify App Proxy lander ALTID her
+// Shopify App Proxy lander ALTID her (/apps/sitemap)
 app.get("/", (req, res) => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${buildUrls(BEST_PAGES)}
+${buildUrls(CORNERSTONE_PAGES)}
 ${buildUrls(PROBLEMS)}
 ${buildUrls(DECISION_PAGES)}
+${buildUrls(BEST_PAGES)}
 ${buildUrls(EXPERIENCE_PAGES)}
 ${buildUrls(MAINTENANCE_PAGES)}
 </urlset>`;
@@ -45,3 +47,4 @@ ${buildUrls(MAINTENANCE_PAGES)}
 app.listen(PORT, "0.0.0.0", () => {
   console.log("✅ Sitemap server running on port", PORT);
 });
+
