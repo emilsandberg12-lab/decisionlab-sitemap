@@ -3,8 +3,8 @@ import express from "express";
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 
-// Shopify App Proxy endpoint
-app.get("/apps/sitemap", (req, res) => {
+// Shopify App Proxy lander ALTID her
+app.get("/", (req, res) => {
   res
     .status(200)
     .set("Content-Type", "application/xml")
@@ -14,11 +14,6 @@ app.get("/apps/sitemap", (req, res) => {
     <loc>https://decisionlab.myshopify.com/</loc>
   </url>
 </urlset>`);
-});
-
-// Healthcheck
-app.get("/", (req, res) => {
-  res.status(200).send("OK");
 });
 
 app.listen(PORT, "0.0.0.0", () => {
