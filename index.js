@@ -8,6 +8,8 @@ import { BEST_PAGES } from "./data/best-pages.js";
 import { EXPERIENCE_PAGES } from "./data/experience-pages.js";
 import { MAINTENANCE_PAGES } from "./data/maintenance-pages.js";
 
+console.log("🚨 SITEMAP BOOTED – PROBLEMS:", PROBLEMS?.length);
+
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 
