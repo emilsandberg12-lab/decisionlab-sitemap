@@ -1,0 +1,28 @@
+export const CORNERSTONE_PAGES = [
+  { slug: "wrist-pain-from-computer-use" },
+  { slug: "back-pain-from-sitting-all-day" },
+  { slug: "neck-pain-from-screen-use" },
+  { slug: "shoulder-pain-from-computer-work" },
+  { slug: "forearm-pain-from-computer-work" },
+  { slug: "shoulder-pain-from-desk-work" },
+  { slug: "eye-strain-from-computer-work" },
+  { slug: "lower-back-pain-from-desk-work" },
+  { slug: "hand-pain-from-mouse-use" },
+  { slug: "upper-back-pain-from-desk-work" },
+  { slug: "forearm-pain-from-mouse-and-keyboard" },
+  { slug: "leg-pain-from-sitting-all-day" },
+  { slug: "headaches-from-screen-work" },
+  { slug: "leg-pain-from-prolonged-sitting" },
+  { slug: "poor-posture-from-desk-work" },
+  { slug: "home-office-posture-problems" },
+  { slug: "monitor-and-screen-ergonomics" },
+  { slug: "typing-fatigue-and-productivity" },
+  { slug: "desk-setup-for-long-workdays" },
+  { slug: "neck-pain-from-desk-work" },
+
+  { slug: "garage-workbench-buying-guide" },
+  { slug: "garage-storage-cabinets-for-organization-and-durability" },
+  { slug: "garage-storage-shelving-vs-cabinets" },
+  { slug: "garage-workbench-setup-for-real-work" },
+  { slug: "garage-organization-mistakes-that-waste-space" }
+];
