@@ -15,8 +15,13 @@ const BASE_URL = "https://decisionlab.myshopify.com";
 
 // Helper: byg <url> entries
 function buildUrls(pages = []) {
-  return pages
-    .filter(p => p && p.slug && !p.aliasOf) // undgå aliases & invalide entries
+  // UNDERSTØTTER BÅDE arrays OG objects
+  const list = Array.isArray(pages)
+    ? pages
+    : Object.keys(pages).map(slug => ({ slug }));
+
+  return list
+    .filter(p => p && p.slug && !p.aliasOf)
     .map(
       p => `
   <url>
@@ -47,4 +52,3 @@ ${buildUrls(MAINTENANCE_PAGES)}
 app.listen(PORT, "0.0.0.0", () => {
   console.log("✅ Sitemap server running on port", PORT);
 });
-
