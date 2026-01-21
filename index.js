@@ -1,29 +1,10 @@
-const express = require("express");
+import express from "express";
 
 const app = express();
-
-// Railway-safe port (lokal = 3000, prod = injected)
 const PORT = Number(process.env.PORT) || 3000;
 
-/**
- * Healthcheck / root
- */
-app.get("/", (req, res) => {
-  res.status(200).send("OK");
-});
-
-/**
- * Shopify App Proxy
- * /apps/sitemap -> faktisk sitemap
- */
+// Shopify App Proxy endpoint
 app.get("/apps/sitemap", (req, res) => {
-  res.redirect(301, "/api/sitemap");
-});
-
-/**
- * Sitemap XML
- */
-app.get("/api/sitemap", (req, res) => {
   res
     .status(200)
     .set("Content-Type", "application/xml")
@@ -35,9 +16,11 @@ app.get("/api/sitemap", (req, res) => {
 </urlset>`);
 });
 
-/**
- * Start server
- */
+// Healthcheck
+app.get("/", (req, res) => {
+  res.status(200).send("OK");
+});
+
 app.listen(PORT, "0.0.0.0", () => {
   console.log("Listening on port", PORT);
 });
