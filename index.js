@@ -1,6 +1,6 @@
 import express from "express";
 
-// Import data (single source of truth)
+// Import data
 import { CORNERSTONE_PAGES } from "./data/cornerstone-pages.js";
 import { PROBLEMS } from "./data/problems.js";
 import { DECISION_PAGES } from "./data/decision-pages.js";
@@ -10,14 +10,9 @@ import { MAINTENANCE_PAGES } from "./data/maintenance-pages.js";
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
-
 const BASE_URL = "https://decisionlab.myshopify.com";
 
-/**
- * Build sitemap URLs
- * - understøtter BÅDE arrays [{ slug }]
- * - OG objects { "slug": {...} }
- */
+// Helper – virker med både arrays og objects
 function buildUrls(pages) {
   if (!pages) return "";
 
@@ -36,7 +31,7 @@ function buildUrls(pages) {
     .join("");
 }
 
-// Shopify App Proxy lander ALTID her (/apps/sitemap)
+// 🔹 Shopify App Proxy LANDER HER: /apps/sitemap
 app.get("/", (req, res) => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -52,6 +47,11 @@ ${buildUrls(MAINTENANCE_PAGES)}
     .status(200)
     .set("Content-Type", "application/xml")
     .send(xml);
+});
+
+// 🔹 BONUS: hvis nogen rammer /apps/sitemap.xml → redirect
+app.get("/sitemap.xml", (req, res) => {
+  res.redirect(301, "/apps/sitemap");
 });
 
 app.listen(PORT, "0.0.0.0", () => {
