@@ -3,7 +3,7 @@ import express from "express";
 const app = express();
 
 // Railway injecter PORT – den SKAL bruges
-const PORT = process.env.PORT;
+const PORT = Number(process.env.PORT) || 3000;
 
 // Healthcheck / root
 app.get("/", (req, res) => {
