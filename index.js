@@ -8,22 +8,25 @@ import { BEST_PAGES } from "./data/best-pages.js";
 import { EXPERIENCE_PAGES } from "./data/experience-pages.js";
 import { MAINTENANCE_PAGES } from "./data/maintenance-pages.js";
 
-console.log("🚨 SITEMAP BOOTED – PROBLEMS:", PROBLEMS?.length);
-
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 
 const BASE_URL = "https://decisionlab.myshopify.com";
 
-// Helper: byg <url> entries
-function buildUrls(pages = []) {
-  // UNDERSTØTTER BÅDE arrays OG objects
+/**
+ * Build sitemap URLs
+ * - understøtter BÅDE arrays [{ slug }]
+ * - OG objects { "slug": {...} }
+ */
+function buildUrls(pages) {
+  if (!pages) return "";
+
   const list = Array.isArray(pages)
     ? pages
     : Object.keys(pages).map(slug => ({ slug }));
 
   return list
-    .filter(p => p && p.slug && !p.aliasOf)
+    .filter(p => p?.slug && !p.aliasOf)
     .map(
       p => `
   <url>
