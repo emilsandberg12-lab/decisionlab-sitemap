@@ -1,3 +1,13 @@
 export const EXPERIENCE_PAGES = [
-  { slug: "developer-long-hours-typing" }
+  { slug: "garage-storage-cabinets-user-experience" },
+  { slug: "garage-tool-chest-user-experience" },
+  { slug: "garage-shelving-unit-user-experience" },
+  { slug: "garage-organization-system-user-experience" },
+  { slug: "garage-wall-storage-user-experience" },
+
+  { slug: "garage-cabinets-maintenance-guide" },
+  { slug: "garage-workbench-maintenance-guide" },
+  { slug: "garage-shelving-maintenance-guide" },
+  { slug: "garage-wall-storage-maintenance-guide" },
+  { slug: "garage-organization-system-longevity" }
 ];
