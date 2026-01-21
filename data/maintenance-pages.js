@@ -1,4 +1,3 @@
 export const MAINTENANCE_PAGES = [
-  { slug: "about" },
-  { slug: "contact" }
+  { slug: "garage-cabinets-maintenance-guide" }
 ];
